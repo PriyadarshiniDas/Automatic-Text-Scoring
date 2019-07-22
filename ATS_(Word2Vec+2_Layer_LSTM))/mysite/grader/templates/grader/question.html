@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block breadcrumb %}
+  <li class="breadcrumb-item active"><a href="{% url 'index' %}">Home</a></li>
+  <li class="breadcrumb-item active">Essay Set {{ question.set }}</li>
+{% endblock %}
+{% block content %}
+{% if question %}
+    <h1>Essay Set {{ question.set }}</h1>
+    <!-- <p class="text-justify">{{ question.question_title }}</p> -->
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% include 'includes/form.html' %}
+    </br>
+        <button style="background-color:forestgreen; width: 150px; height: 40px;" type="submit" >Grade Me!</button>
+      </form>
+
+{% else %}
+    <h1>Error</h1>
+{% endif %}
+{% endblock %}
